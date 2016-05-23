@@ -1,0 +1,162 @@
+F640360
+
+
+
+
+from analyir
+
+
+//IR Codes SKY Plus - RC6 24 bits format 
+#define UP 0xC00C58
+#define DOWN 0xC00C59
+#define CHUP 0xC05C20
+#define CHDOWN 0xC00C21
+
+#define TVGUIDE 0xC00CCC
+#define SERVICES 0xC00C7E
+#define BOXOFFICE 0xC00C7D
+#define INTERACTIVE 0xC00CF5
+#define RIGHT 0xC00C5B
+#define LEFT 0xC00C5A
+#define PLAYPAUSE 0xC00C3E
+#define STOP 0xC00C3F
+#define REW 0xC00C3D
+#define FWD 0xC00C28
+#define SELECT 0xC00C5C
+#define RECORD 0xC00C40
+#define POWER 0xC00C0C
+#define SKY 0xC00C80
+#define NUM0 0xC00C00
+#define NUM1 0xC00C01
+#define NUM2 0xC00C02
+#define NUM3 0xC00C03
+#define NUM4 0xC00C04
+#define NUM5 0xC00C05
+#define NUM6 0xC00C06
+#define NUM7 0xC00C07
+#define NUM8 0xC00C08
+#define NUM9 0xC00C09
+#define RED 0xC00C6D
+#define GREEN 0xC00C6E
+#define YELLOW 0xC00C6F
+#define BLACK 0xC00C70
+#define HELP 0xC00C81
+#define BACKUP 0xC00C83
+#define TEXT 0xC00C3C
+#define INFO 0xC00CCB
+#define TV 0xC00C84
+
+//These are RC5 on SKY+
+#define VOLUP 0x0810
+#define VOLDOWN 0x0811
+#define MUTE 0x080D
+
+
+
+Sky+ IR Remote Codes as determined by the IRSky Software
+   Released under the MIT License - see Terms of Use at the bottom of this file.
+
+Home Site: 
+   http://www.OfItselfSo.com/IRSky/SkyPlusIRRemoteCodes.txt 
+   http://www.OfItselfSo.com/IRSky/IRSky.php 
+   
+NOTES:   
+   
+SKY+ IR remotes operate in two modes: SKY mode and TV mode. SKY Mode is activated when the SKY button is pressed 
+and most buttons will then emit IR codes which use the RC6-6-20 protocol. The TV mode is activated when the TV 
+button is pressed. The IR codes emitted in this mode are intended to control a TV, not the Sky box, and since 
+TV's use a wide variety of IR protocols the codes output are dependent on the current TV setting of the SKY remote. 
+If the SKY remote is configured to a Phillips TV then the output codes will be RC5. It is up to the user to configure
+the Sky+ IR remote to the type of TV.
+ 
+There are specific exceptions. Some buttons (Volume+/- and Mute) always emit the configured TV codes even in SKY mode. 
+Some buttons (Play, Pause) send unknown (to me) codes in TV mode and some (TV Guide, Box Office) always toggle SKY mode 
+back on and then send a SKY mode code. 
+
+A Sky+ Rev4 IR Remote with a TV Mode configured using a four digit brand code of 0081 was used to determine these codes.
+
+
+Button      Sky Mode  Protocol  TV Mode  Protocol      Notes
+==========================================================================================================================
+TV           0x0C84   RC6-6     0x0C84   RC6-6      In TV mode this transmits an RC6-6 code
+Sky          0x0C80   RC6-6     0x0C80   RC6-6      In TV mode this transmits an RC6-6 code
+Power        0x0C0C   RC6-6     0x0C     RC5        Button must be pressed for about 2 seconds before the code is transmitted
+TV Guide     0x0CCC   RC6-6     0x0CCC   RC6-6      In TV mode this transmits an RC6-6 code and changes mode to SKY
+Box Office   0x0C7d   RC6-6     0x0C7d   RC6-6      In TV mode this transmits an RC6-6 code and changes mode to SKY
+Services     0x0C7E   RC6-6     0x0C7E   RC6-6      In TV mode this transmits an RC6-6 code and changes mode to SKY
+Interactive  0x0CF5   RC6-6     0x0CF5   RC6-6      In TV mode this transmits an RC6-6 code and changes mode to SKY
+Mute         0x0D     RC5       0x0D     RC5        Sends TV Code in SKY mode but does not change remote into SKY mode
+i            0x0CC6   RC6-6     0x2C     RC5            
+Volume +     0x10     RC5       0x10     RC5        Sends TV Code in SKY mode but does not change remote into SKY mode
+Volume -     0x11     RC5       0x11     RC5        Sends TV Code in SKY mode but does not change remote into SKY mode
+Left         0x0C5A   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Up           0x0C58   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Select       0x0C5C   RC6-6     0x29     RC5            
+Right        0x0C56   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Down         0x0C59   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Channel +    0x0C20   RC6-6     0x20     RC5            
+Channel -    0x0C21   RC6-6     0x21     RC5            
+Text         0x0C3C   RC6-6     0x3C     RC5            
+Back Up      0x0C83   RC6-6     0x3F     RC5            
+Help         0x0C81   RC6-6     0x38     RC5            
+Fast Left    0x0C3D   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Pause        0x0C24   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Play         0x0C3E   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Fast Right   0x0C28   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Record       0x0C40   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Stop         0x0C3F   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Red          0x0C6D   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Green        0x0C6E   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Yellow       0x0C6F   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Blue         0x0C70   RC6-6                         Unknown protocol - does not seem to be RC5 or RC6 in TV Mode?
+Digit 1      0x0C01   RC6-6     0x01     RC5            
+Digit 2      0x0C02   RC6-6     0x02     RC5            
+Digit 3      0x0C03   RC6-6     0x03     RC5            
+Digit 4      0x0C04   RC6-6     0x04     RC5            
+Digit 5      0x0C05   RC6-6     0x05     RC5            
+Digit 6      0x0C06   RC6-6     0x06     RC5            
+Digit 7      0x0C07   RC6-6     0x07     RC5            
+Digit 8      0x0C08   RC6-6     0x08     RC5            
+Digit 9      0x0C09   RC6-6     0x09     RC5            
+Digit 0      0x0C00   RC6-6     0x00     RC5            
+
+ +------------------------------------------------------------------------------------------------------------------------------+
+ |                                                   TERMS OF USE: MIT License                                                  |
+ +------------------------------------------------------------------------------------------------------------------------------|
+ |Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation    |
+ |files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,    |
+ |modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software|
+ |is furnished to do so, subject to the following conditions:                                                                   |
+ |                                                                                                                              |
+ |The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.|
+ |                                                                                                                              |
+ |THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE          |
+ |WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR         |
+ |COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,   |
+ |ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                         |
+ +------------------------------------------------------------------------------------------------------------------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
