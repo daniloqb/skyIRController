@@ -142,18 +142,18 @@ unsigned int  num8[11] = {550,550,  1200,550, 550,550,   550,1200, 1200,550,  55
 unsigned int  num9[11] = {550,550,  1200,550, 550,1200,  550,1200, 1200,1200, 550};  // UNKNOWN DE78B0D0
 
 
-sky_num0  -- 110000
-sky_num1  -- 110000
-sky_num2  -- 110000
-sky_num3  -- 110000
-sky_num4  -- 110000
-sky_num5  -- 110000
-sky_num6  -- 110000
-sky_num7  -- 110000
-sky_num8  -- 110000
-sky_num9  -- 110000
-sky_numd  -- 110000
-sky_nume  -- 110000
+sky_num0  --
+sky_num1  --
+sky_num2  --
+sky_num3  --
+sky_num4  --
+sky_num5  --
+sky_num6  --
+sky_num7  --
+sky_num8  --
+sky_num9  --
+sky_numd  --
+sky_nume  --
 
 
 
