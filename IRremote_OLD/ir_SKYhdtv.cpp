@@ -104,12 +104,12 @@ Regards,
 
 #define BITS          16  // The number of bits in the command
 
-#define HDR_MARK    6000  // The length of the Header:Mark
+#define HDR_MARK    5800  // The length of the Header:Mark
 #define HDR_SPACE   1200  // The lenght of the Header:Space
 
-#define BIT_MARK    580  // The length of a Bit:Mark
+#define BIT_MARK    550  // The length of a Bit:Mark
 #define ONE_SPACE   1200  // The length of a Bit:Space for 1's
-#define ZERO_SPACE  580  // The length of a Bit:Space for 0's
+#define ZERO_SPACE  550  // The length of a Bit:Space for 0's
 #define TOPBIT 0x8000
 
 //+=============================================================================

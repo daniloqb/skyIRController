@@ -1,0 +1,17 @@
+O protocolo do equipamento sky hdtv envia 59 pulsos, em 3 blocos de 19 pulsos que contabilizam 57 pulsos. Os outros 2 pulsos faltantes são espaços para repetição.
+
+Nos testes realizados, se enviar somente 1 bloco o equipamento receptor aceita o comando.
+
+Ao analisar os pulsos, parecia com um tipo de código usado em protocolos RC6 da philips, o manchester. Porém havia discrepâncias no meio do pulso. Realizando uma pesquisa pela internet encontrei um tipo de procotolo RC6, o RC6-MM que envia dois bits por pulsos e descobri que esse código da sky poderia ser alguma versão.
+
+
+Estes foram os grupos de sinais que encontrei:
+
+mark,space
+
+550,550    -  00
+550,1200   -  01
+1200,550   -  10
+1200,1200  -  11
+
+

@@ -29,9 +29,6 @@
 // Disable (set to 0) all the protocols you do not need/want!
 //
 
-
-#define SEND_YORKMKC         1
-
 #define SEND_SKYHDTV         1
 
 #define DECODE_RC5           1
@@ -274,18 +271,9 @@ class IRsend
 		void  sendRaw     		(const unsigned int buf[],  unsigned int len,  unsigned int hz) ;
 
 		//......................................................................
-    
-
-
-#               if SEND_YORKMKC
-                        void sendYorkMKC(unsigned char IRcode[], int nbits);
-#               endif
-
-
-
-#               if SEND_SKYHDTV
-                        void  sendSKYhdtv (unsigned short data,  int nbits) ;
-#               endif
+      #if SEND_SKYHDTV
+          void  sendSKYhdtv (unsigned short data,  int nbits) ;
+      #endif
 
 #		if SEND_RC5
 			void  sendRC5        (unsigned long data,  int nbits) ;

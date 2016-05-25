@@ -102,63 +102,46 @@ Regards,
 //
 //==============================================================================
 
-#define BITS          16  // The number of bits in the command
+#define YORKMKC_HDR_MARK	4800
+#define YORKMKC_HDR_SPACE	2400
+#define YORKMKC_BIT_MARK	560
+#define YORKMKC_ONE_SPACE	1800
+#define YORKMKC_ZERO_SPACE	560
 
-#define HDR_MARK    6000  // The length of the Header:Mark
-#define HDR_SPACE   1200  // The lenght of the Header:Space
+#define YORKMKC_BOTBIT 0x01
 
-#define BIT_MARK    580  // The length of a Bit:Mark
-#define ONE_SPACE   1200  // The length of a Bit:Space for 1's
-#define ZERO_SPACE  580  // The length of a Bit:Space for 0's
-#define TOPBIT 0x8000
 
 //+=============================================================================
 //
-#if SEND_SKYHDTV
-void  IRsend::sendSKYhdtv (unsigned short data,  int nbits)
+#if SEND_YORKMKC
+
+void IRsend::sendYorkMKC(unsigned char IRcode[], int nbits)
 {
 
-        int toggle;
-	// Set IR carrier frequency
-	enableIROut(36);
+  enableIROut(38);
+  mark(YORKMKC_HDR_MARK);
+  space(YORKMKC_HDR_SPACE);
 
-	// Header
-	mark(HDR_MARK);
-	space(HDR_SPACE);
+for (int j = 0; j<17; j++){
+  
+   for (int i = 0; i < nbits; i++) {
+    if (IRcode[j] & YORKMKC_BOTBIT) {
+      mark(YORKMKC_BIT_MARK);
+      space(YORKMKC_ONE_SPACE);
+    } 
+    else {
+      mark(YORKMKC_BIT_MARK);
+      space(YORKMKC_ZERO_SPACE);
+    }
+    IRcode[j] >>= 1;
+  }//end for i 
 
-        toggle = 0;
+}//for j
 
+  mark(YORKMKC_BIT_MARK);
+  space(0);
+  
+  } //sendYorkMKC
 
-	// Data
-	for (int i = 0; i < nbits; i++) {
-           toggle = !toggle;
-           if (data & TOPBIT) {
-   
-            if(toggle){
-              mark(ONE_SPACE);
-            }
-            else{
-              space(ONE_SPACE);
-            }
-
-           }
-           else{ 
-             
-            if(toggle){
-              mark(ZERO_SPACE);
-            }
-            else{
-              space(ZERO_SPACE);
-            }
-             
-               }
-      data <<= 1;
-
-
-        }
-	// Footer
-	mark(BIT_MARK);
-    space(0);  // Always end with the LED off
-}
 #endif
 

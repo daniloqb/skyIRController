@@ -1,0 +1,5 @@
+O protocolo do equipamento sky hdtv envia 59 pulsos, em 3 blocos de 19 pulsos que contabilizam 57 pulsos. Os outros 2 pulsos faltantes são espaços para repetição.
+
+Nos testes realizados, se enviar somente 1 bloco o equipamento receptor aceita o comando.
+
+
