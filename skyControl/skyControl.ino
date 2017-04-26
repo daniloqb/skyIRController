@@ -2,7 +2,7 @@
 
 #include "helperfunctions.h"
 #include "System_debug.h"
-#include "Device.h"
+#include "SkyControllerDriver.h"
 
 #include <aJSON.h>
 
@@ -19,14 +19,14 @@ char * get_errorMessage();
 
 
 System sys;
-
-Device device;
+Sky sky;
+SkyControllerDriver driver(&sky);
 
 void setup() {
 
 
   sys.begin();
-  device.begin();
+  driver.begin();
 
 }
 
@@ -58,7 +58,7 @@ void loop() {
 
 void checkSystem() {
 
-  device.update();
+  driver.update();
 
 
 }
@@ -79,7 +79,7 @@ char * processMessage(char * uri, UrlParams url_params) {
   response = main_route(uri);
 
   if(response == NULL){
-    response = device.process_message(uri, url_params); 
+    response = driver.process_message(uri, url_params); 
   }
 
   if(response == NULL){
@@ -129,8 +129,8 @@ char * get_devices() {
   aJsonObject *devices = aJson.createArray();
   
   aJsonObject *device_1 = aJson.createObject();
-  aJson.addStringToObject(device_1, "name", device.get_name());
-  aJson.addStringToObject(device_1, "route", device.get_main_route());
+  aJson.addStringToObject(device_1, "name", driver.get_name());
+  aJson.addStringToObject(device_1, "route", driver.get_main_route());
   aJson.addItemToArray(devices,device_1);
   
   aJson.addItemToObject(root, "devices", devices); 
@@ -140,6 +140,7 @@ char * get_devices() {
   aJson.deleteItem(root);       
 
 
+  
   return response;                                  
 
 }

@@ -1,6 +1,6 @@
 
-#ifndef SKYCONTROLLER_H
-#define SKYCONTROLLER_H
+#ifndef SKYIRCONTROLLER_H
+#define SKYIRCONTROLLER_H
 
 #include "Arduino.h"
 #include <IRremote.h>
@@ -69,7 +69,7 @@ class Sky{
   public:
 
   Sky();
-  send(const unsigned short code);
+  void send(const unsigned short code);
 
   void btn_num0();
   void btn_num1();

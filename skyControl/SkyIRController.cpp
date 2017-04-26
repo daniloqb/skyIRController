@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "SkyController.h"
+#include "SkyIRController.h"
 
 
 #include <IRremote.h>
@@ -15,7 +15,7 @@ Sky::Sky(){
 
 
 
-Sky::send(const unsigned short code){
+void Sky::send(const unsigned short code){
   
   irsend.sendSKYhdtv(code,nbits);
 
