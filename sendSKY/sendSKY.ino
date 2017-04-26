@@ -76,7 +76,9 @@ void loop() {
 
 if(Serial.available()){
     
-    char command = Serial.parseInt();
+    int command = Serial.parseInt();
+    Serial.print("Command: ");
+    Serial.println(command);
 
     switch(command){
 
