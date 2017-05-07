@@ -6,77 +6,76 @@
 #include <IRremote.h>
 
 
+  const unsigned long PROGMEM AOC_SOURCE = 0xBD10EF;
+  const unsigned long PROGMEM AOC_MUTE= 0xBD20DF;
+  const unsigned long PROGMEM AOC_POWER = 0xBD807F;
 
+  const unsigned long PROGMEM AOC_NUM1 = 0xBDA857;
+  const unsigned long PROGMEM AOC_NUM2 = 0xBD6897;
+  const unsigned long PROGMEM AOC_NUM3 = 0xBDE817;
+  const unsigned long PROGMEM AOC_NUM4 = 0xBD9867;
+  const unsigned long PROGMEM AOC_NUM5 = 0xBD58A7;
+  const unsigned long PROGMEM  AOC_NUM6 = 0xBDD827;
+  const unsigned long PROGMEM AOC_NUM7 = 0xBDB847;
+  const unsigned long PROGMEM AOC_NUM8 = 0xBD7887;
+  const unsigned long PROGMEM AOC_NUM9 = 0xBDF807;
+  const unsigned long PROGMEM AOC_NUM100 = 0xBDD22D;
+  const unsigned long PROGMEM AOC_NUM0 = 0xBD827D;
+  
+  const unsigned long PROGMEM AOC_RETURN = 0xBD22DD;
+  const unsigned long PROGMEM AOC_MENU = 0xBD50AF;
+  const unsigned long PROGMEM AOC_SERVICE = 0xBD7689;
+
+  const unsigned long PROGMEM AOC_VOLUP = 0xBD30CF;
+  const unsigned long PROGMEM  AOC_VOLDOWN = 0xBD08F7;
+  const unsigned long PROGMEM AOC_CHUP = 0xBD18E7;
+  const unsigned long PROGMEM AOC_CHDOWN = 0xBD38C7;
+
+  const unsigned long PROGMEM AOC_UP = 0xBDD02F;
+  const unsigned long PROGMEM AOC_DOWN = 0xBDF00F;
+  const unsigned long PROGMEM AOC_LEFT = 0xBD926D;
+  const unsigned long PROGMEM AOC_RIGHT = 0xBD52AD;
+  const unsigned long PROGMEM AOC_CONFIRM = 0xBDB04F;
+
+  const unsigned long PROGMEM AOC_EPG = 0xBD1AE5;
+  const unsigned long PROGMEM AOC_DISPLAY = 0xBD40BF;
+  const unsigned long PROGMEM AOC_CHLIST = 0xBD5AA5;
+  const unsigned long PROGMEM AOC_EXIT = 0xBDE01F;
+  const unsigned long PROGMEM AOC_CC = 0xBDCA35;
+  const unsigned long PROGMEM AOC_AUDIO = 0xBD02FD;
+  const unsigned long PROGMEM AOC_PICTURE = 0xBDC03F;
+  const unsigned long PROGMEM AOC_SOUND = 0xBD906F;
+
+  const unsigned long PROGMEM AOC_RED = 0xBD32CD;
+  const unsigned long PROGMEM AOC_GREEN = 0xBDB24D;
+  const unsigned long PROGMEM AOC_YELLOW = 0xBD728D;
+  const unsigned long PROGMEM AOC_BLUE = 0xBDF20D;
+
+  const unsigned long PROGMEM AOC_ASPECT = 0xBD28D7;
+  const unsigned long PROGMEM AOC_SLEEP = 0xBDC837;
+  const unsigned long PROGMEM AOC_FREEZE = 0xBD48B7;
+  const unsigned long PROGMEM AOC_INFO = 0xBDB649;
+
+  const unsigned long PROGMEM AOC_RW = 0xBD3AC5;
+  const unsigned long PROGMEM AOC_PLAY = 0xBD7A85;
+  const unsigned long PROGMEM AOC_FF = 0xBDFA05;
+  const unsigned long PROGMEM AOC_STOP = 0xBDBA45;
 
 
 
 
 class AOC{
 
-  const unsigned long  AOC_SOURCE = 0xBD10EF;
-  const unsigned long  AOC_MUTE= 0xBD10EF;
-  const unsigned long  AOC_POWER = 0xBD10EF;
-
-  const unsigned long  AOC_NUM1 = 0xBD10EF;
-  const unsigned long  AOC_NUM2 = 0xBD10EF;
-  const unsigned long  AOC_NUM3 = 0xBD10EF;
-  const unsigned long  AOC_NUM4 = 0xBD10EF;
-  const unsigned long  AOC_NUM5 = 0xBD10EF;
-  const unsigned long  AOC_NUM6 = 0xBD10EF;
-  const unsigned long  AOC_NUM7 = 0xBD10EF;
-  const unsigned long  AOC_NUM8 = 0xBD10EF;
-  const unsigned long  AOC_NUM9 = 0xBD10EF;
-  const unsigned long  AOC_NUM100 = 0xBD10EF;
-  const unsigned long  AOC_NUM0 = 0xBD10EF;
-  
-  const unsigned long  AOC_RETURN = 0xBD10EF;
-  const unsigned long  AOC_MENU = 0xBD10EF;
-  const unsigned long  AOC_SERVICE = 0xBD10EF;
-
-  const unsigned long  AOC_VOLUP = 0xBD10EF;
-  const unsigned long  AOC_VOLDOWN = 0xBD10EF;
-  const unsigned long  AOC_CHUP = 0xBD10EF;
-  const unsigned long  AOC_CHDOWN = 0xBD10EF;
-
-  const unsigned long  AOC_UP = 0xBD10EF;
-  const unsigned long  AOC_DOWN = 0xBD10EF;
-  const unsigned long  AOC_LEFT = 0xBD10EF;
-  const unsigned long  AOC_RIGHT = 0xBD10EF;
-  const unsigned long  AOC_CONFIRM = 0xBD10EF;
-
-  const unsigned long  AOC_EPG = 0xBD10EF;
-  const unsigned long  AOC_DISPLAY = 0xBD10EF;
-  const unsigned long  AOC_CHLIST = 0xBD10EF;
-  const unsigned long  AOC_EXIT = 0xBD10EF;
-  const unsigned long  AOC_CC = 0xBD10EF;
-  const unsigned long  AOC_AUDIO = 0xBD10EF;
-  const unsigned long  AOC_PICTURE = 0xBD10EF;
-  const unsigned long  AOC_SOUND = 0xBD10EF;
-
-  const unsigned long  AOC_RED = 0xBD10EF;
-  const unsigned long  AOC_GREEN = 0xBD10EF;
-  const unsigned long  AOC_YELLOW = 0xBD10EF;
-  const unsigned long  AOC_BLUE = 0xBD10EF;
-
-  const unsigned long  AOC_ASPECT = 0xBD10EF;
-  const unsigned long  AOC_SLEEP = 0xBD10EF;
-  const unsigned long  AOC_FREEZE = 0xBD10EF;
-  const unsigned long  AOC_INFO = 0xBD10EF;
-
-  const unsigned long  AOC_RW = 0xBD10EF;
-  const unsigned long  AOC_PLAY = 0xBD10EF;
-  const unsigned long  AOC_FF = 0xBD10EF;
-  const unsigned long  AOC_STOP = 0xBD10EF;
 
   private:
   
-  IRsend irsend;
+  IRsend * irsend;
   int nbits;
 
   public:
 
-  AOC();
-  void send(const unsigned int code);
+  AOC(IRsend * irsend);
+  void send(const unsigned long code);
 
  
   void btn_source();
@@ -150,17 +149,18 @@ class AOC{
 
 
 
-AOC::AOC(){
-  
+AOC::AOC(IRsend * sender){
+
+  irsend = sender;
   nbits = 32;
   
   }
 
 
 
-void AOC::send(const unsigned int code){
+void AOC::send(const unsigned long code){
   
-  irsend.sendNEC(code,nbits);
+  irsend->sendNEC(code,nbits);
 
   
   }

@@ -7,8 +7,9 @@
 
 
 
-Sky::Sky(){
-  
+Sky::Sky(IRsend * sender){
+
+  irsend = sender;
   nbits = 16;
   
   }
@@ -17,7 +18,7 @@ Sky::Sky(){
 
 void Sky::send(const unsigned short code){
   
-  irsend.sendSKYhdtv(code,nbits);
+  irsend->sendSKYhdtv(code,nbits);
 
   
   }

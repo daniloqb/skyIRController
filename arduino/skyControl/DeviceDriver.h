@@ -1,11 +1,12 @@
 
-#ifndef SKYCONTROLLERDRIVER_H
-#define SKYCONTROLLERDRIVER_H
+#ifndef DEVICEDRIVER_H
+#define DEVICEDRIVER_H
 
 #include "Arduino.h"
 #include <aJSON.h>
 
 #include "SkyIRController.h"
+#include "AocIRController.h"
 
 
 
@@ -55,7 +56,13 @@
   const char ROUTE_BTN_BLUE[]      PROGMEM = "/sky/blue";
   const char ROUTE_BTN_CHUP[]      PROGMEM = "/sky/chup";
   const char ROUTE_BTN_CHDOWN[]    PROGMEM = "/sky/chdown"; 
-  const char ROUTE_BTN_CHRETURN[]  PROGMEM = "/sky/chreturn";  
+  const char ROUTE_BTN_CHRETURN[]  PROGMEM = "/sky/chreturn";     
+
+  const char ROUTE_BTN_VOLUP[]         PROGMEM = "/sky/volup";
+  const char ROUTE_BTN_VOLDOWN[]       PROGMEM = "/sky/voldown";
+  const char ROUTE_BTN_MUTE[]          PROGMEM = "/sky/mute";
+  const char ROUTE_BTN_SOURCE[]        PROGMEM = "/sky/source";
+
   
   /*
    CONSTANTES DE VARIAVEIS DO DISPOSITIVO
@@ -72,11 +79,13 @@ class SkyControllerDriver{
 
 
   private:
+    IRsend irsend;
     char * device_commands();
-    Sky *device;
+    Sky * sky;
+    AOC * aoc;
 
   public:
-     SkyControllerDriver(Sky *sky);
+     SkyControllerDriver();
     void begin();
     char * get_main_route();
     char * process_message(char * uri, UrlParams url_params);
@@ -85,9 +94,10 @@ class SkyControllerDriver{
   
 };
 
-SkyControllerDriver::SkyControllerDriver(Sky * sky){
+SkyControllerDriver::SkyControllerDriver(){
 
-  device = sky;
+  sky = new Sky(&irsend);
+  aoc = new AOC(&irsend);
   
 }
 
@@ -147,196 +157,216 @@ char * SkyControllerDriver::process_message(char * uri,UrlParams url_params){
   
   else if (strcmp_P(uri, ROUTE_BTN_NUM0) == 0) {
     valid_route = true;
-    device->btn_num0();
+    sky->btn_num0();
 
   }
     else if (strcmp_P(uri, ROUTE_BTN_NUM1) == 0) {
     valid_route = true;
-    device->btn_num1();
+    sky->btn_num1();
   }
     else if (strcmp_P(uri, ROUTE_BTN_NUM2) == 0) {
     valid_route = true;
-    device->btn_num2();
+    sky->btn_num2();
   }
     else if (strcmp_P(uri, ROUTE_BTN_NUM3) == 0) {
     valid_route = true;
-    device->btn_num3();
+    sky->btn_num3();
   }
     else if (strcmp_P(uri, ROUTE_BTN_NUM4) == 0) {
     valid_route = true;
-    device->btn_num4();
+    sky->btn_num4();
   }
     else if (strcmp_P(uri, ROUTE_BTN_NUM5) == 0) {
    valid_route = true;
-   device->btn_num5();
+   sky->btn_num5();
   }
     else if (strcmp_P(uri, ROUTE_BTN_NUM6) == 0) {
    valid_route = true;
-   device->btn_num6();
+   sky->btn_num6();
   }
     else if (strcmp_P(uri, ROUTE_BTN_NUM7) == 0) {
    valid_route = true;
-   device->btn_num7();
+   sky->btn_num7();
   }
     else if (strcmp_P(uri, ROUTE_BTN_NUM8) == 0) {
    valid_route = true;
-   device->btn_num8();
+   sky->btn_num8();
   }
     else if (strcmp_P(uri, ROUTE_BTN_NUM9) == 0) {
    valid_route = true;
-   device->btn_num9();
+   sky->btn_num9();
   }
     else if (strcmp_P(uri, ROUTE_BTN_NUMD) == 0) {
    valid_route = true;
-   device->btn_numD();
+   sky->btn_numD();
   }
     else if (strcmp_P(uri, ROUTE_BTN_NUME) == 0) {
    valid_route = true;
-   device->btn_numE();
+   sky->btn_numE();
   }
   else if (strcmp_P(uri, ROUTE_BTN_POWER) == 0) {
    valid_route = true;
-   device->btn_power();
+   sky->btn_power();
+   delay(40);
+   aoc->btn_power();
   }
   
   else if (strcmp_P(uri, ROUTE_BTN_SCRTV) == 0) {
    valid_route = true;
-   device->btn_scrtv();
+   sky->btn_scrtv();
   }
   
   else if (strcmp_P(uri, ROUTE_BTN_PLAY) == 0) {
    valid_route = true;
-   device->btn_play();
+   sky->btn_play();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_STOP) == 0) {
    valid_route = true;
-   device->btn_stop();
+   sky->btn_stop();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_PAUSE) == 0) {
    valid_route = true;
-   device->btn_pause();
+   sky->btn_pause();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_RW) == 0) {
    valid_route = true;
-   device->btn_rw();
+   sky->btn_rw();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_FF) == 0) {
    valid_route = true;
-   device->btn_ff();
+   sky->btn_ff();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_REC) == 0) {
    valid_route = true;
-   device->btn_rec();
+   sky->btn_rec();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_CFF) == 0) {
    valid_route = true;
-   device->btn_cff();
+   sky->btn_cff();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_CRW) == 0) {
    valid_route = true;
-   device->btn_crw();
+   sky->btn_crw();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_GUIDE) == 0) {
    valid_route = true;
-   device->btn_guide();
+   sky->btn_guide();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_CENTRAL) == 0) {
    valid_route = true;
-   device->btn_central();
+   sky->btn_central();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_LIST) == 0) {
    valid_route = true;
-   device->btn_list();
+   sky->btn_list();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_EXIT) == 0) {
    valid_route = true;
-   device->btn_exit();
+   sky->btn_exit();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_RETURN) == 0) {
    valid_route = true;
-   device->btn_return();
+   sky->btn_return();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_MENU) == 0) {
    valid_route = true;
-   device->btn_menu();
+   sky->btn_menu();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_INFO) == 0) {
    valid_route = true;
-   device->btn_info();
+   sky->btn_info();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_CONFIRM) == 0) {
    valid_route = true;
-   device->btn_confirm();
+   sky->btn_confirm();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_UP) == 0) {
    valid_route = true;
-   device->btn_up();
+   sky->btn_up();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_DOWN) == 0) {
    valid_route = true;
-   device->btn_down();
+   sky->btn_down();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_LEFT) == 0) {
    valid_route = true;
-   device->btn_left();
+   sky->btn_left();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_RIGHT) == 0) {
    valid_route = true;
-   device->btn_right();
+   sky->btn_right();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_RED) == 0) {
    valid_route = true;
-   device->btn_red();
+   sky->btn_red();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_GREEN) == 0) {
    valid_route = true;
-   device->btn_green();
+   sky->btn_green();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_YELLOW) == 0) {
    valid_route = true;
-   device->btn_yellow();
+   sky->btn_yellow();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_BLUE) == 0) {
    valid_route = true;
-   device->btn_blue();
+   sky->btn_blue();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_CHUP) == 0) {
    valid_route = true;
-   device->btn_chup();
+   sky->btn_chup();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_CHDOWN) == 0) {
    valid_route = true;
-   device->btn_chdown();
+   sky->btn_chdown();
   }
   
     else if (strcmp_P(uri, ROUTE_BTN_CHRETURN) == 0) {
    valid_route = true;
-   device->btn_chreturn();
+   sky->btn_chreturn();
+  }
+
+
+   else if (strcmp_P(uri, ROUTE_BTN_VOLUP) == 0) {
+     valid_route = true;
+     aoc->btn_volup();
+  }
+     else if (strcmp_P(uri, ROUTE_BTN_VOLDOWN) == 0) {
+     valid_route = true;
+     aoc->btn_voldown();
+  }
+     else if (strcmp_P(uri, ROUTE_BTN_MUTE) == 0) {
+     valid_route = true;
+     aoc->btn_mute();
+  }
+     else if (strcmp_P(uri, ROUTE_BTN_SOURCE) == 0) {
+     valid_route = true;
+     aoc->btn_source();
   }
   
    

@@ -1,9 +1,24 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+#endif
+
 #include "Arduino.h"
 #include <SoftwareSerial.h>
 
+//#define TESTING
+
+#if defined(__AVR_ATmega328P__) || defined(__AVR_ATmega168__)
+    
+    #ifndef TESTING
+      #define USESOFT
+    #endif
+
+#elif defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
+    #ifndef TESTING
+      #define USESERIAL
+    #endif
+#endif
 
 
 /*************************
@@ -77,9 +92,15 @@ class System {
     char _url[MAX_URL];
     char _uri[MAX_URI];
     UrlParams _url_params;
-   // SoftwareSerial * _my_serial;
+    SoftwareSerial * _my_serial;
     void _init_vars();
     void _process_url();
+    boolean get_data_debug();
+    boolean get_data_soft();
+    boolean get_data_mega();
+    void send_response_debug(char *msg);
+    void send_response_soft(char *msg);
+    void send_response_mega(char *msg);
 
   public:
     System();    
@@ -103,9 +124,15 @@ void System::begin() {
 
   Serial.begin(BAUNDRATE);
 
- // _my_serial = new SoftwareSerial(RX_PIN, TX_PIN);
-//  _my_serial->begin(BAUNDRATE);
+  #if defined(USESOFT)
+    _my_serial = new SoftwareSerial(RX_PIN, TX_PIN);
+    _my_serial->begin(BAUNDRATE);
+  #endif
 
+  #if defined(USEMEGA)
+    Serial1.begin(BAUNDRATE);
+  #endif
+  
   _init_vars();
 
 
@@ -131,12 +158,43 @@ void System::_init_vars() {
 }
 boolean System::get_data() {
 
+#if defined(TESTING)
+  return get_data_debug();
+
+#elif defined(USESOFT)
+  return get_data_soft();
+
+#elif defined(USEMEGA)
+  return get_data_mega();
+
+#endif
+
+
+}
+
+
+void System::send_response(char * msg) {
+
+
+#if defined(TESTING)
+  send_response_debug(msg);
+
+#elif defined(USESOFT)
+  send_response_soft(msg);
+
+#elif defined(USEMEGA)
+  send_response_mega(msg);
+#endif
+
+}
+
+
+
+boolean System::get_data_debug() {
+
   //char buff[MAX_URL];
   int index = 0;
   char c;
-
-
-
 
 
   if (Serial.available() > 0) {
@@ -172,7 +230,7 @@ boolean System::get_data() {
 
 
 
-void System::send_response(char * msg) {
+void System::send_response_debug(char * msg) {
 
 
   //Verifica qual o tamando da mensagem.
@@ -194,6 +252,157 @@ void System::send_response(char * msg) {
   free(msg);
 
 }
+
+
+
+boolean System::get_data_soft() {
+
+  //char buff[MAX_URL];
+  int index = 0;
+  char c;
+
+
+
+
+  if (_my_serial->available() > 0) {
+
+    for (int i = 0; i < MAX_URI; i++) {
+      _url[i] = '\0';
+    }
+
+
+
+    while (_my_serial->available()) {
+      c = _my_serial->read();
+
+ 
+      delay(1);
+      if ((c != '\r' && c != '\n') && index < MAX_URL) {
+        _url[index++] = c;
+      }
+
+
+    }
+    //retorna os dados;
+    _process_url();
+    return true;
+
+  }
+  // se nao houver dados retorna null.
+  return false;
+
+
+
+}
+
+
+
+void System::send_response_soft(char * msg) {
+
+
+  //Verifica qual o tamando da mensagem.
+  int size_msg = strlen(msg);
+
+  // limpa o buffer da serial??? Sera que limpa mesmo?
+  _my_serial->flush();
+
+
+  for (int i = 0; i < size_msg; i++) {
+    _my_serial->print(msg[i]);
+  //  delay(1);
+  }
+  //Envia um caractere de nova linha, indicando o fim do envio.
+  _my_serial->println();
+
+  Serial.println(msg);
+
+  free(msg);
+
+}
+
+
+
+boolean System::get_data_mega() {
+
+  //char buff[MAX_URL];
+  int index = 0;
+  char c;
+
+
+
+ #if defined(USEMEGA)
+
+  if (Serial1.available() > 0) {
+
+    for (int i = 0; i < MAX_URI; i++) {
+      _url[i] = '\0';
+    }
+
+
+
+    while (Serial1.available()) {
+      c = Serial1.read();
+
+ 
+      delay(10);
+      if ((c != '\r' && c != '\n') && index < MAX_URL) {
+        _url[index++] = c;
+      }
+
+
+    }
+    //retorna os dados;
+    _process_url();
+    return true;
+
+  }
+  // se nao houver dados retorna null.
+  return false;
+
+#endif
+
+}
+
+
+
+void System::send_response_mega(char * msg) {
+
+  #if defined(USEMEGA)
+  //Verifica qual o tamando da mensagem.
+  int size_msg = strlen(msg);
+
+  // limpa o buffer da serial??? Sera que limpa mesmo?
+  Serial1.flush();
+
+
+  for (int i = 0; i < size_msg; i++) {
+    Serial1.print(msg[i]);
+    //delay(5);
+  }
+  //Envia um caractere de nova linha, indicando o fim do envio.
+  Serial1.println();
+  Serial.println(msg);
+
+
+
+  free(msg);
+
+ #endif
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 void System::_process_url() {
@@ -269,6 +478,3 @@ void split_url(char  * url, char * uri, Params *params) {
 }
 
 
-
-
-#endif

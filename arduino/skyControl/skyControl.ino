@@ -1,12 +1,15 @@
 
 
 #include "helperfunctions.h"
-#include "System_soft.h"
-#include "SkyControllerDriver.h"
+#include "System.h"
+#include "DeviceDriver.h"
 
 #include <aJSON.h>
+#include <IRremote.h>
 
 #define MAIN_ROUTE "/"
+
+
 
 
 char * processMessage(char * uri, UrlParams url_params);
@@ -19,8 +22,8 @@ char * get_errorMessage();
 
 
 System sys;
-Sky sky;
-SkyControllerDriver driver(&sky);
+
+SkyControllerDriver driver;
 
 void setup() {
 
