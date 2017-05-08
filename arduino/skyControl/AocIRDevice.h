@@ -1,6 +1,6 @@
 
-#ifndef AOCIRCONTROLLER_H
-#define AOCIRCONTROLLER_H
+#ifndef AOCIRDEVICE_H
+#define AOCIRDEVICE_H
 
 #include "Arduino.h"
 #include <IRremote.h>

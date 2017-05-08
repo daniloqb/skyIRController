@@ -1,12 +1,12 @@
 
-#ifndef DEVICEDRIVER_H
-#define DEVICEDRIVER_H
+#ifndef CONTROLLEREDRIVER_H
+#define CONTROLLERDRIVER_H
 
 #include "Arduino.h"
 #include <aJSON.h>
 
-#include "SkyIRController.h"
-#include "AocIRController.h"
+#include "SkyIRDevice.h"
+#include "AocIRDevice.h"
 
 
 

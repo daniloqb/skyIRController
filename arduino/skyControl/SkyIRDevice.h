@@ -1,6 +1,6 @@
 
-#ifndef SKYIRCONTROLLER_H
-#define SKYIRCONTROLLER_H
+#ifndef SKYIRDEVICE_H
+#define SKYIRDEVICE_H
 
 #include "Arduino.h"
 #include <IRremote.h>
